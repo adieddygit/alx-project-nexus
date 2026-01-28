@@ -111,4 +111,4 @@ ProDev Frontend Engineering Program - ALX
 
 - Documentation complete
 - Repository ready for assessment
-- Fully compliant with ALX Project Nexus requirements
+- Fully compliant with ALX Project Nexus requirements.
