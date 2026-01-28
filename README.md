@@ -103,7 +103,7 @@ Used for idea sharing, API clarification, debugging support, and project coordin
 ## Author
 
 **Emmanuel Adi**  
-ProDev Frontend Engineering Program
+ProDev Frontend Engineering Program - ALX
 
 ---
 
