@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useAppDispatch } from "@/store/hooks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { incrementPage } from "@/store/productsSlice";
 
 const InfiniteLoader = () => {
     const dispatch = useAppDispatch();
+    const { status } = useAppSelector((state) => state.products);
     const ref = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
@@ -17,9 +18,9 @@ const InfiniteLoader = () => {
 
         if (ref.current) observer.observe(ref.current);
         return () => observer.disconnect();
-    }, [dispatch]);
+    }, [dispatch, status]);
 
-    return <div ref={ref} className="h-10" />
+    return <div ref={ref} role="status" aria-label="Loading more products" className="h-10" />
 };
 
 export default InfiniteLoader;

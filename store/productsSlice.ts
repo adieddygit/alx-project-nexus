@@ -4,9 +4,9 @@ import { Product } from "@/types/product"
 export const fetchProducts = createAsyncThunk<
  Product[],
  number
- >("products/fetch", async (page) => {
+ >("products/fetch", async () => {
     const res = await fetch(
-        `https://fakestoreapi.com/products?limit=10&page=${page}`
+        `https://fakestoreapi.com/products`
     );
     return res.json();
  });
@@ -26,10 +26,12 @@ export const fetchProducts = createAsyncThunk<
     extraReducers: (builder) => {
         builder
             .addCase(fetchProducts.pending, (state) => {
-                state.status = "Loading";
+                if (state.status = "Loading") return;
+                state.status = "loading"
             })
             .addCase(fetchProducts.fulfilled, (state, action) => {
                 state.items.push(...action.payload);
+                state.status = "idle"
             });
     },
  });

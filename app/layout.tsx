@@ -14,3 +14,7 @@ export default function RootLayout({
         </html>
     );
 }
+
+export const metadata = {
+    manifest: "/manifest.json",
+};

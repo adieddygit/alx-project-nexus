@@ -14,7 +14,7 @@ if (!product) return <p>Loading...</p>;
 
 return (
     <main className="p-6 grid md:grid-cols-2 gap-8">
-        <Image src={product.image} alt={product.title} />
+        <Image src={product.image} alt={product.title} width={50} height={50}/>
         <section>
             <h1 className="text-xl font-semibold">{product.title}</h1>
             <p className="text-lg font-bold">{product.price}</p>

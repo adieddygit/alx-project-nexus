@@ -10,7 +10,9 @@ interface Props {
 
 const ProductCard = ({ product }: Props) => {
     return (
-        <article className="bg-white rounded-lg shadow-sm p-4 flex flex-col">
+        <article 
+        tabIndex={0}
+        className="bg-white text-gray-500 rounded-lg shadow-sm p-4 flex flex-col">
             <div className="relative w-full h-40 mb-3">
                 <Image
                 src={product.image}
