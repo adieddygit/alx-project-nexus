@@ -24,17 +24,37 @@ export const fetchProducts = createAsyncThunk<
         },
     },
     extraReducers: (builder) => {
-        builder
-            .addCase(fetchProducts.pending, (state) => {
-                if (state.status = "Loading") return;
-                state.status = "loading"
-            })
-            .addCase(fetchProducts.fulfilled, (state, action) => {
-                state.items.push(...action.payload);
-                state.status = "idle"
-            });
-    },
- });
+  builder
+    // Fetch pending
+    .addCase(fetchProducts.pending, (state) => {
+      // Only set to loading if not already loading
+      if (state.status !== "loading") {
+        state.status = "loading";
+      }
+    })
+
+    // Fetch fulfilled
+    .addCase(fetchProducts.fulfilled, (state, action) => {
+      // Deduplicate products to avoid duplicate keys in infinite scroll
+      const existingIds = new Set(state.items.map((p) => p.id));
+
+      const newProducts = action.payload.filter(
+        (p) => !existingIds.has(p.id)
+      );
+
+      state.items.push(...newProducts);
+
+      state.status = "succeeded";
+    })
+
+    // Fetch rejected
+    .addCase(fetchProducts.rejected, (state) => {
+      state.status = "failed";
+    });
+},
+
+    });
+
 
  export const { incrementPage } = productsSlice.actions;
  export default productsSlice.reducer;
