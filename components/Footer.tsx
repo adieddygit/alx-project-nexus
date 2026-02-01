@@ -1,5 +1,11 @@
 import Link from "next/link";
-import { Twitter, Linkedin, Instagram, Facebook} from "lucide-react";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import InstagramIcon from "@mui/icons-material/Instagram";
+
+
+const iconClass = "text-indigo-600 hover:text-white p-1 transition-all duration-200 hover:-translate-y-1"
 
 const Footer = () => {
     return (
@@ -19,10 +25,45 @@ const Footer = () => {
                 </ul>    
             </div>
 
-            <div>
+            <div className="grid md:grid-cols-2">
+            <div >
                 <h4 className="font-semibold text-2xl mb-2">Contact</h4>
                 <p>Email: support@nexusstore.dev</p>
-                <p>Built for ALX Project Nexus</p>
+            </div>
+
+            {/* Socials */}
+            <div className="p-2 text-4xl">
+            <Link
+              href="https://facebook.com"
+              target="_blank"
+              aria-label="Facebook"
+              className={iconClass}>  
+              <FacebookIcon fontSize="large" />
+            </Link>
+            
+            <Link
+            href="https://twitter.com/"
+            target="_blank"
+            aria-label="Twitter"
+            className={iconClass}>
+                <TwitterIcon fontSize="large"/>
+            </Link>
+            <Link
+              href="https://linkedin.com/in/your-profile"
+              target="_blank"
+              aria-label="LinkedIn"
+              className={iconClass}>
+              <LinkedInIcon fontSize="large"/>
+            </Link>
+
+            <Link
+              href="https://instagram.com/your-handle"
+              target="_blank"
+              aria-label="Instagram"
+              className={iconClass}>
+              <InstagramIcon fontSize="large"/>
+            </Link>
+            </div>
             </div>
 
             <div className="text-center text-md text-gray-500 pb-4">
