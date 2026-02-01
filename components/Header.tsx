@@ -52,7 +52,7 @@ const Header = () => {
 
                 {/* Logo */}
                 <Link href="/" className="text-4xl font-bold">
-                Nexus<span className="text-indigo-600">Store</span>
+                Ne<span className="text-4xl">╳</span>us<span className="text-indigo-600">Store</span>
                 </Link>
 
                 {/* Desktop Navigation */}

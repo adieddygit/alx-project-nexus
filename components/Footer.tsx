@@ -1,11 +1,12 @@
 import Link from "next/link";
+import { Twitter, Linkedin, Instagram, Facebook} from "lucide-react";
 
 const Footer = () => {
     return (
         <footer className="border-t mt-16">
         <div className="max-w-7xl mx-auto px-4 py-10 grid gap-6 md:grid-cols-3 text-sm">
             <div>
-                <h3 className="font-bold mb-2 italic">NexusStore</h3>
+                <h3 className="font-bold mb-2 italic">Ne╳usStore</h3>
                 <p className="text-gray-500">A modern PWA e-commerce platform built with Next.js</p>
             </div>
 
@@ -25,7 +26,7 @@ const Footer = () => {
             </div>
 
             <div className="text-center text-md text-gray-500 pb-4">
-                &copy; {new Date().getFullYear()} NexusStore. By Emmanuel Adi. All right reserved.
+                &copy; {new Date().getFullYear()} Ne╳usStore. By Emmanuel Adi. All right reserved.
             </div>
         </div>
         </footer>

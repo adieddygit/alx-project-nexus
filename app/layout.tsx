@@ -1,4 +1,5 @@
 import ReduxProvider from "@/providers/ReduxProvider";
+import ProductsBootstrap from "@/providers/ProductsBootstrap";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "./globals.css";
@@ -14,6 +15,7 @@ export default function RootLayout({
                 <ReduxProvider>
                     <Header/>
                     <main className="min-h-screen">{children}</main>
+                    <ProductsBootstrap/>
                     <Footer/>
                 </ReduxProvider>
             </body>
