@@ -5,12 +5,12 @@ const Footer = () => {
         <footer className="border-t mt-16">
         <div className="max-w-7xl mx-auto px-4 py-10 grid gap-6 md:grid-cols-3 text-sm">
             <div>
-                <h3 className="font-semibold mb-2">NexusStore</h3>
+                <h3 className="font-bold mb-2 italic">NexusStore</h3>
                 <p className="text-gray-500">A modern PWA e-commerce platform built with Next.js</p>
             </div>
 
             <div>
-                <h4 className="font-semibold mb-2">Links</h4>
+                <h4 className="font-semibold text-2xl mb-2">Links</h4>
                 <ul className="space-y-1">
                     <li><Link href="/products">Products</Link></li>
                     <li><Link href="/about">About</Link></li>
@@ -19,13 +19,13 @@ const Footer = () => {
             </div>
 
             <div>
-                <h4 className="font-semibold mb-2">Contact</h4>
+                <h4 className="font-semibold text-2xl mb-2">Contact</h4>
                 <p>Email: support@nexusstore.dev</p>
-                <p>Emmanuel Adi built for ALX Project Nexus</p>
+                <p>Built for ALX Project Nexus</p>
             </div>
 
-            <div className="text-center text-xs text-gray-500 pb-4">
-                &copy; {new Date().getFullYear()} NexusStore. All right reserved.
+            <div className="text-center text-md text-gray-500 pb-4">
+                &copy; {new Date().getFullYear()} NexusStore. By Emmanuel Adi. All right reserved.
             </div>
         </div>
         </footer>

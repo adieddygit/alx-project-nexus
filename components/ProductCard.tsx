@@ -21,8 +21,8 @@ const ProductCard = ({ product }: Props) => {
                 className="object-contain"
                 />
             </div>
-            <h3>{product.title}</h3>
-            <p>${product.price}</p>
+            <h3 className="text-gray-900">{product.title}</h3>
+            <p className="text-red-500 font-semibold">${product.price}</p>
             <Link
             href={`/product/${product.id}`}
             className="mt-auto text-blue-600 text-sm font-medium hover:underline"
