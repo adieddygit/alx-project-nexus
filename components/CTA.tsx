@@ -5,10 +5,23 @@ export function CTA() {
         <section className="py-24 bg-black text-white text-center">
             <h2 className="text-4xl font-bold">Ready to Elevate Your Shopping</h2>
             <p>Join thousands of happy customers today.</p>
-            <Link href="/products"
-            className="inline-block mt-8 px-8 py-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 transition">
-            Get Started
-            </Link>
+
+            <div className="p-10">
+                <Link
+                href="/auth/signup"
+                className="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700"
+              >
+                Get Started
+              </Link>
+
+              <Link
+                href="/auth/login"
+                className="border border-indigo-600 text-indigo-600 px-6 py-3 rounded-lg"
+              >
+                Sign In
+              </Link>
+            </div>
+            
         </section>
     )
 }

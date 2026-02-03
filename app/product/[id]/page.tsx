@@ -1,19 +1,49 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import Image from "next/image";
 
-async function getProduct(id: string) {
+/* ---------- METADATA FETCH ---------- */
+async function getProductForMetadata(id: string) {
+  try {
  const res = await fetch(`https://fakestoreapi.com/products/${id}`, {
-    cache: "no-store",
- })
+    next: { revalidate: 60 } 
+ });
+
+ if(!res.ok) return null;
+
  return res.json();
+}catch {
+  return null;
+}
 }
 
+/* ---------- PAGE FETCH ---------- */
+async function getProduct(id: string) {
+  const res = await fetch(
+    `https://fakestoreapi.com/products/${id}`,
+    { cache: "no-store" }
+  );
+
+  if (!res.ok) {
+    throw new Error("Product not found");
+  }
+
+  return res.json();
+}
+/* ---------- METADATA ---------- */
 export async function generateMetadata({
  params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }): Promise<Metadata> {
-    const product = await getProduct(params.id);
+    const { id } = await params;
+    const product = await getProductForMetadata(id);
+
+    if (!product) {
+      return {
+        title: "Product | NexusStore",
+        description: "Browse our products on NexusStore",
+      };
+    }
 
     return {
         title: product.title,
@@ -24,12 +54,14 @@ export async function generateMetadata({
     };
 }
 
+/* ---------- PAGE ---------- */
 export default async function ProductPage({
     params,
 }: {
-    params: { is: string };
+    params: Promise<{ id: string }>
 }) {
-  const product = await getProduct(params.id);
+  const { id } = await params;
+  const product = await getProduct(id);
 
   return (
     <section className="max-w-6xl mx-auto px-4 py-20 grid md:grid-cols-2 gap-10">

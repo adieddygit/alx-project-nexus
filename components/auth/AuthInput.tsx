@@ -13,3 +13,5 @@ const AuthInput = ({ label, ...props }: Props) => {
     );
 };
 
+export default AuthInput;
+
