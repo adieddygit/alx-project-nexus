@@ -12,3 +12,4 @@ const AuthInput = ({ label, ...props }: Props) => {
         </div>
     );
 };
+
