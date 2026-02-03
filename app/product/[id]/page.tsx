@@ -1,25 +1,51 @@
-"use client";
+import { Metadata } from "next";
 import Image from "next/image";
 
-import { useParams } from "next/navigation";
-import { useAppSelector } from "@/store/hooks"
+async function getProduct(id: string) {
+ const res = await fetch(`https://fakestoreapi.com/products/${id}`, {
+    cache: "no-store",
+ })
+ return res.json();
+}
 
-export default function ProductDetails(){
-    const { id } = useParams();
-    const product = useAppSelector((state) => 
-    state.products.items.find((p) => p.id === Number(id))
-);
+export async function generateMetadata({
+ params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
+    const product = await getProduct(params.id);
 
-if (!product) return <p>Loading...</p>;
+    return {
+        title: product.title,
+        description: product.description,
+        openGraph: {
+            images: [product.image],
+        },
+    };
+}
 
-return (
-    <main className="p-6 grid md:grid-cols-2 gap-8">
-        <Image src={product.image} alt={product.title} width={50} height={50}/>
-        <section>
-            <h1 className="text-xl font-semibold">{product.title}</h1>
-            <p className="text-lg font-bold">{product.price}</p>
+export default async function ProductPage({
+    params,
+}: {
+    params: { is: string };
+}) {
+  const product = await getProduct(params.id);
+
+  return (
+    <section className="max-w-6xl mx-auto px-4 py-20 grid md:grid-cols-2 gap-10">
+        <Image
+          src={product.image}
+          alt={product.title}
+          width={400}
+          height={400}
+          className="object-contain"
+          />
+
+          <div>
+            <h1 className="text-3xl font-bold">{product.title}</h1>
             <p className="mt-4 text-gray-600">{product.description}</p>
-        </section>
-    </main>
-);
+            <p className="mt-6 text-2xl font-bold text-indigo-600">{product.price}</p>
+          </div>
+    </section>
+  )
 }

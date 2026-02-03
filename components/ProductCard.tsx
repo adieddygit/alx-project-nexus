@@ -2,32 +2,45 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Product } from "@/types/product"
+import { motion } from "framer-motion";
+import { Product } from "@/types/product";
 
 interface Props {
     product: Product;
 }
 
-const ProductCard = ({ product }: Props) => {
+const ProductCard = ({ product }:{ product: Product}) => {
     return (
-        <article 
+        <motion.article 
+        whileHover={{y: -6}}
+        transition={{ type: "spring", stiffness: 300}}
         tabIndex={0}
-        className="bg-white text-gray-500 rounded-lg shadow-sm p-4 flex flex-col">
-            <div className="relative w-full h-40 mb-3">
+        className="relative bg-white text-gray-500 rounded-xl shadow-sm hover:shadow p-4 flex flex-col overflow-hidden">
+            
+            {/* Featured Badge */}
+            {product.isFeatured && (
+                <span className="absolute top-3 left-3 z-10 bg-black text-white taxt-xs px-2 py-1 rouded-full">
+                🔥 Featured
+                </span>
+            )}
+            <Link
+            href={`/product/${product.id}`}
+            className="mt-auto text-blue-600 text-sm font-medium hover:underline">
+            <div className="relative w-full h-48 mb-3">
                 <Image
                 src={product.image}
                 alt={product.title}
                 fill
-                className="object-contain"
+                className="object-contain p-4"
                 />
             </div>
-            <h3 className="text-gray-900">{product.title}</h3>
-            <p className="text-red-500 font-semibold">${product.price}</p>
-            <Link
-            href={`/product/${product.id}`}
-            className="mt-auto text-blue-600 text-sm font-medium hover:underline"
-            >View Details</Link>
-        </article>
+
+            <div className="p-4">
+              <h3 className="text-gray-900">{product.title}</h3>
+              <p className="text-red-500 font-semibold">${product.price}</p>
+            </div>
+            </Link>
+        </motion.article>
     );
 };
 

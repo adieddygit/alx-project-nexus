@@ -9,11 +9,11 @@ const iconClass = "text-indigo-600 hover:text-white p-1 transition-all duration-
 
 const Footer = () => {
     return (
-        <footer className="border-t mt-16">
+        <footer className="backdrop-blur-md bg-black/80 text-gray-400">
         <div className="max-w-7xl mx-auto px-4 py-10 grid gap-6 md:grid-cols-3 text-sm">
             <div>
-                <h3 className="font-bold mb-2 italic">Ne╳usStore</h3>
-                <p className="text-gray-500">A modern PWA e-commerce platform built with Next.js</p>
+                <h3 className="font-bold mb-2 text-2xl italic">Ne╳us<span className="text-indigo-600">Store</span></h3>
+                <p className="text-gray-500 mt-2 max-w-sm">A modern PWA e-commerce platform built with Next.js</p>
             </div>
 
             <div>
