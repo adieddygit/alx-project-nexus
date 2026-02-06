@@ -8,7 +8,7 @@ export default function Hero() {
         <section className="relative flex items-center justify-center bg-linear-to-br from-black via-neutral-900 to-black text-white overflow-hidden py-14 px-16">
 
             {/* Glow */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(99,102,241,0.15),transparent_60%)]"/>
+            <div className="inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(99,102,241,0.15),transparent_60%)]"/>
 
             <div className="relative max-w-7x1 mx-auto px-6 grid md:grid-cols2 gap-12 items-center" />
 
@@ -29,14 +29,27 @@ export default function Hero() {
 
                 <div className="mt-8 flex gap-4">
                     <Link
-                        href="/products"
-                        className="px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 transition shadow-lg shadow-indigo-600/30">
+                        href="/product"
+                        className=" inline-flex items-center justify-center
+                                    px-6 py-3 rounded-xl
+                                    bg-indigo-600 text-white font-medium
+                                    hover:bg-indigo-500
+                                    transition-all duration-300
+                                    shadow-lg shadow-indigo-600/30
+                                    focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400
+                                    pointer-events-auto">
                             Explore Products
                         </Link>
 
                         <Link 
                         href="/about"
-                        className="px-6 py-3 rounded-xl border border-white/20 hover:bg-white/10 backdrop-blur-md transition">
+                        className="inline-flex items-center justify-center
+                                    px-6 py-3 rounded-xl
+                                    border border-white/20 text-white font-medium
+                                    backdrop-blur-md
+                                    hover:bg-white/10
+                                    transition-all duration-300
+                                    focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40">
                         Learn More
                         </Link>
                 </div>

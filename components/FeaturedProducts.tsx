@@ -5,7 +5,7 @@ import SkeletonCard from "./SkeletonCard";
 
 
 export function FeaturedProducts() {
-    const { items, status } = useAppSelector((state) => state.products);
+    const { items, status, } = useAppSelector((state) => state.products);
 
     const featured = useMemo(() => {
         return items.slice(0, 4);

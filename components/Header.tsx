@@ -8,7 +8,7 @@ import { ShoppingCart, Menu, X } from "lucide-react";
 
 const Header = () => {
     const cartCount = useAppSelector(
-        (state) => state.cart.items.length
+        (state) => state.cart.items.reduce((sum, item) => sum + item.quantity, 0)
     );
     const pathname = usePathname();
     const [open, setOpen] = useState(false);
@@ -31,7 +31,7 @@ const Header = () => {
 
 /* ---------------- ROUTE THEME ---------------- */
     const forceDark = 
-        pathname.startsWith("/products") ||
+        pathname.startsWith("/product") ||
         pathname.startsWith("/cart");
 
     const isDark = forceDark || scrolled;
@@ -59,8 +59,8 @@ const Header = () => {
                 <div className="flex justify-center">
                     <nav className={`hidden md:flex gap-8 text-md font-bold ${isDark ? "text-white" : "text-indigo-600"} `}>
                     <Link href="/" className="hover:text-indigo-200">Home</Link>
-                    <Link href="/" className="hover:text-indigo-200">Products</Link>
-                    <Link href="/" className="hover:text-indigo-200">About</Link>
+                    <Link href="/product" className="hover:text-indigo-200">Products</Link>
+                    <Link href="/about" className="hover:text-indigo-200">About</Link>
                     </nav>
 
                     {/* Mobile Cart */}
@@ -105,7 +105,7 @@ const Header = () => {
                     <Link onClick={()=> setOpen(false)} href="/" className="block">
                         Home
                     </Link>
-                    <Link onClick={()=> setOpen(false)} href="/products" className="block">
+                    <Link onClick={()=> setOpen(false)} href="/product" className="block">
                         Products
                     </Link>
                     <Link onClick={()=> setOpen(false)} href="/about" className="block">

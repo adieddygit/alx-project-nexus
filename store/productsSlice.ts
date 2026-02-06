@@ -1,60 +1,61 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { Product } from "@/types/product"
+import { Product } from "@/types/product";
 
+/* ---------- THUNK ---------- */
 export const fetchProducts = createAsyncThunk<
- Product[],
- number
- >("products/fetch", async () => {
-    const res = await fetch(
-        `https://fakestoreapi.com/products`
-    );
-    return res.json();
- });
+  Product[],
+  void,
+  { rejectValue: string }
+>(
+  "products/fetch",
+  async (_, { rejectWithValue }) => {
+    try {
+      const res = await fetch("https://fakestoreapi.com/products");
 
- const productsSlice = createSlice({
-    name: "products",
-    initialState: {
-        items: [] as Product[],
-        status: "idle",
-        page: 1,
-    },
-    reducers: {
-        incrementPage: (state) => {
-            state.page += 1;
-        },
-    },
-    extraReducers: (builder) => {
-  builder
-    // Fetch pending
-    .addCase(fetchProducts.pending, (state) => {
-      // Only set to loading if not already loading
-      if (state.status !== "loading") {
-        state.status = "loading";
+      if (!res.ok) {
+        throw new Error("Failed to fetch products");
       }
-    })
 
-    // Fetch fulfilled
-    .addCase(fetchProducts.fulfilled, (state, action) => {
-      // Deduplicate products to avoid duplicate keys in infinite scroll
-      const existingIds = new Set(state.items.map((p) => p.id));
+      const data: Product[] = await res.json();
+      return data;
+    } catch {
+      return rejectWithValue("Fetch failed");
+    }
+  }
+);
 
-      const newProducts = action.payload.filter(
-        (p) => !existingIds.has(p.id)
-      );
+/* ---------- SLICE ---------- */
+const productsSlice = createSlice({
+  name: "products",
+  initialState: {
+    items: [] as Product[],
+    status: "idle" as "idle" | "loading" | "succeeded" | "failed",
+  },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      /* ---- Pending ---- */
+      .addCase(fetchProducts.pending, (state) => {
+        state.status = "loading";
+      })
 
-      state.items.push(...newProducts);
+      /* ---- Fulfilled ---- */
+      .addCase(fetchProducts.fulfilled, (state, action) => {
+        const existingIds = new Set(state.items.map((p) => p.id));
 
-      state.status = "succeeded";
-    })
+        const newProducts = action.payload.filter(
+          (p) => !existingIds.has(p.id)
+        );
 
-    // Fetch rejected
-    .addCase(fetchProducts.rejected, (state) => {
-      state.status = "failed";
-    });
-},
+        state.items.push(...newProducts);
+        state.status = "succeeded";
+      })
 
-    });
+      /* ---- Rejected ---- */
+      .addCase(fetchProducts.rejected, (state) => {
+        state.status = "failed";
+      });
+  },
+});
 
-
- export const { incrementPage } = productsSlice.actions;
- export default productsSlice.reducer;
+export default productsSlice.reducer;
