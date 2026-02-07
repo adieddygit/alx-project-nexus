@@ -1,54 +1,65 @@
 "use client";
 
-import { useAppSelector, useAppDispatch } from "@/store/hooks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import {
   incrementQuantity,
   decrementQuantity,
   removeFromCart,
   clearCart,
 } from "@/store/cartSlice";
-import Image from "next/image"
 
 export default function CartPage() {
   const dispatch = useAppDispatch();
-  const items = useAppSelector((state) => state.cart.items);
+  const { items } = useAppSelector((state) => state.cart);
 
-  const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const total = items.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
 
-  if (items.length === 0) return <p className="text-center mt-20">Your cart is empty.</p>;
+  if (items.length === 0) {
+    return (
+      <section className="max-w-4xl mx-auto px-4 py-20 text-center">
+        <h1 className="text-2xl font-bold">Your cart is empty 🛒</h1>
+      </section>
+    );
+  }
 
   return (
-    <main className="max-w-6xl mx-auto px-6 py-20 space-y-6">
-      <h1 className="text-3xl font-bold">Your Cart</h1>
+    <section className="max-w-4xl mx-auto px-4 py-20">
+      <h1 className="text-3xl font-bold mb-8">Shopping Cart</h1>
 
-      <div className="space-y-4">
+      <div className="space-y-6">
         {items.map((item) => (
-          <div key={item.id} className="flex items-center justify-between border p-4 rounded-lg">
-            <div className="flex items-center gap-4">
-              <Image src="" alt={item.title} className="w-16 h-16 object-contain" />
-              <div>
-                <h2 className="font-semibold">{item.title}</h2>
-                <p>${item.price}</p>
-              </div>
+          <div
+            key={item.id}
+            className="flex items-center justify-between border-b pb-4"
+          >
+            <div>
+              <h2 className="font-semibold">{item.title}</h2>
+              <p className="text-gray-500">${item.price}</p>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
               <button
-                className="px-2 py-1 bg-gray-200 rounded"
                 onClick={() => dispatch(decrementQuantity(item.id))}
+                className="px-3 py-1 border rounded"
               >
-                -
+                −
               </button>
+
               <span>{item.quantity}</span>
+
               <button
-                className="px-2 py-1 bg-gray-200 rounded"
                 onClick={() => dispatch(incrementQuantity(item.id))}
+                className="px-3 py-1 border rounded"
               >
                 +
               </button>
+
               <button
-                className="ml-4 text-red-500 font-bold"
                 onClick={() => dispatch(removeFromCart(item.id))}
+                className="ml-4 text-red-500 hover:underline"
               >
                 Remove
               </button>
@@ -57,15 +68,18 @@ export default function CartPage() {
         ))}
       </div>
 
-      <div className="text-right mt-6">
-        <p className="text-xl font-bold">Total: ${total.toFixed(2)}</p>
+      <div className="mt-10 flex justify-between items-center">
         <button
-          className="mt-4 px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-500 transition"
           onClick={() => dispatch(clearCart())}
+          className="text-red-600 hover:underline"
         >
           Clear Cart
         </button>
+
+        <div className="text-xl font-bold">
+          Total: ${total.toFixed(2)}
+        </div>
       </div>
-    </main>
+    </section>
   );
 }

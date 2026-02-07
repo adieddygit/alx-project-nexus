@@ -13,12 +13,12 @@ const FilterBar = () => {
         <section className="flex flex-wrap gap-4 mb-6">
 
         {/* Category Sort */}
-            <label className="sr-only" htmlFor="catugory">
+            <label className="" htmlFor="category">
                 <select 
             value={category}
             id="category"
             aria-label="Filter by category"
-            className="border rounded-md px-3 py-2 text-sm"
+            className="border rounded-md px-3 py-2 text-sm text-gray-500"
             onChange={(e) => dispatch(setCategory(e.target.value))}>
                 <option value="all">All</option>
                 <option value="electronics">Electronics</option>
@@ -29,7 +29,7 @@ const FilterBar = () => {
             </label>
             
             {/* Price Sort */}
-            <label className="sr-only" htmlFor="sort">
+            <label className="" htmlFor="sort">
             <select 
             value={sortByPrice ?? ""}
             onChange={(e) => {
@@ -42,7 +42,7 @@ const FilterBar = () => {
             }}
             id="sort"
             aria-label="Sort by price"
-            className="border rounded-md px-3 py-2 text-sm">
+            className="border rounded-md px-3 py-2 text-sm text-gray-500">
                 <option value="none">Sort by</option>
                 <option value="ascend">Price: Low → High</option>
                 <option value="descend">Price: High → Low</option>

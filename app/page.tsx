@@ -3,7 +3,6 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { fetchProducts } from "@/store/productsSlice";
-import FilterBar from "@/components/FilterBar";
 // import InfiniteLoader from "@/components/InfiniteLoader";
 import Hero from "@/components/Hero";
 import { Features } from "@/components/Features";
@@ -29,7 +28,6 @@ export default function HomePage() {
       <FeaturedProducts />
       <HowItWorks />
       <CTA />
-      <FilterBar />
       {/* <InfiniteLoader /> */}
     </main>
   );

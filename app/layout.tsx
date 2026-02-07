@@ -3,6 +3,7 @@ import ProductsBootstrap from "@/providers/ProductsBootstrap";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "./globals.css";
+import CartDrawer from "@/components/CartDrawer";
 
 export default function RootLayout({
     children,
@@ -15,6 +16,7 @@ export default function RootLayout({
                 <ReduxProvider>
                     <Header/>
                     <main className="min-h-screen">{children}</main>
+                    <CartDrawer/>
                     <ProductsBootstrap/>
                     <Footer/>
                 </ReduxProvider>
