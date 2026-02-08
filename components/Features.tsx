@@ -17,7 +17,7 @@ export function Features() {
                 className="p-8 rounded-2xl border bg-black shadow-sm hover:shadow-lg transition">
                 <Icon className="w-8 h-8 text-indigo-600" />
                 <h3 className="mt-4 font-bold text-xl">{ title }</h3>
-                <p className="mt-2 text-gray-400">{desc}</p>
+                <p className="mt-2 text-gray-200">{desc}</p>
                 </div>
             ))}
         </div>

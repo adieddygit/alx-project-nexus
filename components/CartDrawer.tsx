@@ -47,7 +47,7 @@ export default function CartDrawer() {
         <div className="flex justify-between items-center p-4 border-b">
           <h2 className="text-xl text-gray-500 font-bold">Cart Panel</h2>
           <button onClick={() => setIsOpen(false)}>
-            <X className="w-6 h-6" />
+            <X className="w-6 h-6 text-gray-500" />
           </button>
         </div>
 
@@ -58,22 +58,22 @@ export default function CartDrawer() {
             items.map((item) => (
               <div
                 key={item.id}
-                className="flex items-center justify-between border p-2 rounded-lg"
+                className="flex items-center justify-between border border-indigo-300 p-2 rounded-lg"
               >
-                <Image src={item.image} alt={item.title} className="w-16 h-16 object-contain" />
+                <Image src={item.image} alt={item.title} width={80} height={80} className="object-contain" />
                 <div className="flex-1 px-2">
-                  <h3 className="font-semibold">{item.title}</h3>
-                  <p className="text-sm">${item.price}</p>
+                  <h3 className="text-indigo-500">{item.title}</h3>
+                  <p className="text-sm text-red-500">${item.price}</p>
                   <div className="flex gap-2 mt-1">
                     <button
-                      className="px-2 py-1 bg-gray-200 rounded"
+                      className="px-2 py-1 bg-black rounded"
                       onClick={() => dispatch(decrementQuantity(item.id))}
                     >
                       -
                     </button>
-                    <span>{item.quantity}</span>
+                    <span className="text-indigo-600">{item.quantity}</span>
                     <button
-                      className="px-2 py-1 bg-gray-200 rounded"
+                      className="px-2 py-1 bg-black rounded"
                       onClick={() => dispatch(incrementQuantity(item.id))}
                     >
                       +

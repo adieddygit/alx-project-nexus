@@ -1,5 +1,7 @@
 "use client";
 
+import { useAppDispatch } from "@/store/hooks";
+import { addToCart } from "@/store/cartSlice";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -10,6 +12,9 @@ interface Props {
 }
 
 const ProductCard = ({ product }:{ product: Product}) => {
+
+    const dispatch = useAppDispatch();
+
     return (
         <motion.article 
         whileHover={{y: -6}}
@@ -40,6 +45,21 @@ const ProductCard = ({ product }:{ product: Product}) => {
               <p className="text-red-500 font-semibold">${product.price}</p>
             </div>
             </Link>
+
+            <button
+            onClick={() =>
+                dispatch(
+                    addToCart({
+                     id: product.id,
+                     title: product.title,
+                     price: product.price,
+                     image: product.image,
+                     quantity: 1,
+                    })
+                )
+            } className="mt-3 w-full bg-indigo-600 text-white py-2 rounded-lg">
+                Add to Cart
+            </button>
         </motion.article>
     );
 };

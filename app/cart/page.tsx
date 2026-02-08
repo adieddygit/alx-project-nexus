@@ -7,6 +7,7 @@ import {
   removeFromCart,
   clearCart,
 } from "@/store/cartSlice";
+import Link from "next/link"
 
 export default function CartPage() {
   const dispatch = useAppDispatch();
@@ -79,7 +80,13 @@ export default function CartPage() {
         <div className="text-xl font-bold">
           Total: ${total.toFixed(2)}
         </div>
-      </div>
+        <Link
+         href="/checkout"
+         className="bg-indigo-600 text-white px-6 py-3 rounded-xl"
+>
+         Proceed to Checkout
+        </Link>
+         </div>
     </section>
   );
 }

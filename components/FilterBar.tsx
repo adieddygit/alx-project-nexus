@@ -22,7 +22,7 @@ const FilterBar = () => {
             onChange={(e) => dispatch(setCategory(e.target.value))}>
                 <option value="all">All</option>
                 <option value="electronics">Electronics</option>
-                <option value="jewelry">Jewelery</option>
+                <option value="jewelery">Jewelery</option>
                 <option value="men's clothing">Men&apos;s</option>
                 <option value="women's clothing">Women&apos;s</option>
             </select>
