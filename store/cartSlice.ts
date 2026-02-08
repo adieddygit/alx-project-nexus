@@ -10,7 +10,7 @@ export interface CartItem {
 }
 
 interface CartState {
-  items: CartItem[]
+  items: CartItem[];
 }
 
 /* ---------- LOCAL STORAGE HELPERS ---------- */
