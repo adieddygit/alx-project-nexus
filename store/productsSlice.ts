@@ -13,7 +13,7 @@ export const fetchProducts = createAsyncThunk<
       const res = await fetch("https://fakestoreapi.com/products");
 
       if (!res.ok) {
-        throw new Error("Failed t fetch products");
+        throw new Error("Failed t fetch product");
       }
 
       const data: Product[] = await res.json();
