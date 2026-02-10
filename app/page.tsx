@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { fetchProducts } from "@/store/productsSlice";
-// import InfiniteLoader from "@/components/InfiniteLoader";
+import InfiniteLoader from "@/components/InfiniteLoader";
 import Hero from "@/components/Hero";
 import { Features } from "@/components/Features";
 import { FeaturedProducts } from "@/components/FeaturedProducts";
@@ -12,14 +12,12 @@ import { CTA } from "@/components/CTA";
 
 export default function HomePage() {
   const dispatch = useAppDispatch();
-  const { status } = useAppSelector((state) => state.products);
+  const { page } = useAppSelector((state) => state.products);
 
   // Fetch products once when component mounts
   useEffect(() => {
-    if (status === "idle") {
-      dispatch(fetchProducts());
-    }
-  }, [dispatch, status]);
+      dispatch(fetchProducts(page));
+  }, [dispatch, page]);
 
   return (
     <main>
@@ -28,7 +26,7 @@ export default function HomePage() {
       <FeaturedProducts />
       <HowItWorks />
       <CTA />
-      {/* <InfiniteLoader /> */}
+      <InfiniteLoader />
     </main>
   );
 }

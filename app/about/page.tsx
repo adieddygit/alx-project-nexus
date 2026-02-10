@@ -27,7 +27,7 @@ export default function AboutPage() {
                 </div>
                 <div>
                     <Image
-                    src="/images/mission.jpg"
+                    src="/images/"
                     alt="Our Mission"
                     width={600}
                     height={400}

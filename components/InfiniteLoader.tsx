@@ -2,25 +2,34 @@
 
 import { useEffect, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { incrementPage } from "@/store/productsSlice";
+import { incrementPage, fetchProducts } from "@/store/productsSlice";
 
 const InfiniteLoader = () => {
-    const dispatch = useAppDispatch();
-    const { status } = useAppSelector((state) => state.products);
-    const ref = useRef<HTMLDivElement | null>(null);
+  const dispatch = useAppDispatch();
+  const { status, page, hasMore } = useAppSelector((state) => state.products);
+  const ref = useRef<HTMLDivElement | null>(null);
 
-    useEffect(() => {
-        const observer = new IntersectionObserver(([entry]) => {
-            if (entry.isIntersecting) {
-                dispatch(incrementPage());
-            }
-        });
+  // Observe the div
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && status !== "loading" && hasMore) {
+        dispatch(incrementPage());
+      }
+    });
 
-        if (ref.current) observer.observe(ref.current);
-        return () => observer.disconnect();
-    }, [dispatch, status]);
+    if (ref.current) observer.observe(ref.current);
 
-    return <div ref={ref} role="status" aria-label="Loading more products" className="h-10" />
+    return () => observer.disconnect();
+  }, [dispatch, status, hasMore]);
+
+  // Fetch products when page changes
+  useEffect(() => {
+    if (hasMore) {
+      dispatch(fetchProducts(page));
+    }
+  }, [dispatch, page, hasMore]);
+
+  return <div ref={ref} className="h-10" aria-label="Load more products" />;
 };
 
 export default InfiniteLoader;

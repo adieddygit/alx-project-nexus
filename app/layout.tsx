@@ -1,9 +1,9 @@
 import ReduxProvider from "@/providers/ReduxProvider";
 import ProductsBootstrap from "@/providers/ProductsBootstrap";
-import Header from "@/components/Header";
+import Header from "@/components/HeaderClient";
 import Footer from "@/components/Footer";
 import "./globals.css";
-import CartDrawer from "@/components/CartDrawer";
+import CartDrawer from "@/components/CartDrawerClient";
 
 export default function RootLayout({
     children,

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAppSelector } from "@/store/hooks";
@@ -14,6 +14,11 @@ const Header = () => {
     const [open, setOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [progress, setProgress] = useState(0);
+    const mounted = useRef(false);
+
+    useEffect(() => {
+        mounted.current = true;
+    }, [])
 
 /* ---------------- SCROLL HANDLER ---------------- */
     useEffect(() => {
@@ -29,6 +34,7 @@ const Header = () => {
         return () => window.removeEventListener("scroll", onScroll)
     }, []);
 
+    
 /* ---------------- ROUTE THEME ---------------- */
     const forceDark = 
         pathname.startsWith("/product") ||
@@ -44,7 +50,7 @@ const Header = () => {
 <>
 {/* PROGRESS BAR */}
 <div className="fixed top-0 left-0 right-0 h-1 z-60">
-    <div className="h-full bg-indigo-500 origin-left transition-transfrom duration-150" style={{ transform: `scaleX(${progress})`}}/>
+    <div className="h-full bg-indigo-600 origin-left transition-transfrom duration-150" style={{ transform: mounted ? `scaleX(${progress})` : `scaleX(0)`,}}/>
 </div>
 
 <header className={headerClass}>
@@ -66,7 +72,7 @@ const Header = () => {
                     {/* Mobile Cart */}
                     <Link href="/cart" className="md:hidden relative">
                     <ShoppingCart className={`w-6 h-6 hover:text-indigo-600 ${isDark ? "text-white" : "text-gray-500"} `}/>
-                    {cartCount > 0 && (
+                    {mounted && cartCount > 0 && (
                         <span className="absolute -top-2 -right-2 text-xs bg-red-500 text-white w-5 h-5 flex item-center justify-center rounded-full">
                             {cartCount}
                         </span>
@@ -80,7 +86,7 @@ const Header = () => {
                     {/* Desktop Cart */}
                     <Link href="/cart" className="hidden md:block relative">
                         <ShoppingCart className={`w-6 h-6 hover:text-indigo-600 ${isDark ? "text-white" : "text-gray-400"} `} />
-                        {cartCount > 0 && (
+                        {mounted && cartCount > 0 && (
                         <span className="absolute -top-2 -right-2 text-xs bg-red-500 text-white w-5 h-5 flex items-center justify-center rounded-full">
                         {cartCount}
                         </span>
@@ -114,9 +120,7 @@ const Header = () => {
                 </nav>
             )}
         </header>
-
 </>
-
         
     );
 };
