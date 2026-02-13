@@ -9,12 +9,16 @@ interface AuthState {
     user: User | null;
     status: "idle" | "loading" | "error";
     error: string | null;
+    page?: number;
+    hasMore: boolean;
 }
 
 const initialState: AuthState = {
     user: null,
     status: "idle",
     error: null,
+    page: 1,
+    hasMore: true,
 };
 
 export const loginUser = createAsyncThunk(

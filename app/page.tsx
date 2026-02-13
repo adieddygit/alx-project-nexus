@@ -16,7 +16,7 @@ export default function HomePage() {
 
   // Fetch products once when component mounts
   useEffect(() => {
-      dispatch(fetchProducts(page));
+      dispatch(fetchProducts());
   }, [dispatch, page]);
 
   return (

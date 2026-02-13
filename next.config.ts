@@ -1,23 +1,20 @@
-import withPWA from "@ducanh2912/next-pwa";
+import nextPWA from "@ducanh2912/next-pwa";
 
-/** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-
+  swcMinify: true,
+  experimental: {
+    turbo: true,
+  },
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "fakestoreapi.com",
-        pathname: "/img/**",
-      },
-    ],
+    domains: ["fakestoreapi.com"],
   },
 };
 
-export default withPWA({
+export default nextPWA({
+  ...nextConfig,
   dest: "public",
   register: true,
-  skipWaiting: true,
+  // skipWaiting: true,
   disable: process.env.NODE_ENV === "development",
-})(nextConfig);
+});

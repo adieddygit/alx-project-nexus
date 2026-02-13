@@ -27,4 +27,6 @@ export default function RootLayout({
 
 export const metadata = {
     manifest: "/manifest.json",
+    title: "NeXusStore",
+    description: "Modern E-commerce Web App built with Next.js"
 };

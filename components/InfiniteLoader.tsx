@@ -25,7 +25,7 @@ const InfiniteLoader = () => {
   // Fetch products when page changes
   useEffect(() => {
     if (hasMore) {
-      dispatch(fetchProducts(page));
+      dispatch(fetchProducts());
     }
   }, [dispatch, page, hasMore]);
 

@@ -30,7 +30,7 @@ export default function Hero() {
                 <div className="mt-8 flex gap-4">
                     <Link
                         href="/product"
-                        className=" inline-flex items-center justify-center
+                        className="inline-flex items-center justify-center
                                     px-6 py-3 rounded-xl
                                     bg-indigo-600 text-white font-medium
                                     hover:bg-indigo-500

@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { Product } from "@/types/product";
-
 /* ---------- THUNK ---------- */
 export const fetchProducts = createAsyncThunk<
   Product[],
@@ -25,21 +24,34 @@ export const fetchProducts = createAsyncThunk<
 );
 
 /* ---------- SLICE ---------- */
+
+interface ProductsState {
+  items: Product[];
+  status: "idle" | "loading" | "succeeded" | "failed";
+  page: number;
+  hasMore: boolean;
+}
+
+const initialState: ProductsState = {
+  items: [],
+  status: "idle",
+  page: 1,
+  hasMore: true,
+};
+
 const productsSlice = createSlice({
   name: "products",
-  initialState: {
-    items: [] as Product[],
-    status: "idle" as "idle" | "loading" | "succeeded" | "failed",
+  initialState,
+  reducers: {
+    incrementPage: (state) => {
+      state.page += 1;
+    },
   },
-  reducers: {},
   extraReducers: (builder) => {
     builder
-      /* ---- Pending ---- */
       .addCase(fetchProducts.pending, (state) => {
         state.status = "loading";
       })
-
-      /* ---- Fulfilled ---- */
       .addCase(fetchProducts.fulfilled, (state, action) => {
         const existingIds = new Set(state.items.map((p) => p.id));
 
@@ -49,13 +61,17 @@ const productsSlice = createSlice({
 
         state.items.push(...newProducts);
         state.status = "succeeded";
-      })
 
-      /* ---- Rejected ---- */
+        // If no new products returned → stop infinite scroll
+        if (newProducts.length === 0) {
+          state.hasMore = false;
+        }
+      })
       .addCase(fetchProducts.rejected, (state) => {
         state.status = "failed";
       });
   },
 });
 
+export const { incrementPage } = productsSlice.actions;
 export default productsSlice.reducer;

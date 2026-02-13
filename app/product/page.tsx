@@ -14,7 +14,7 @@ export default function ProductsPage() {
   // Fetch products when page changes (initial fetch happens at page 1)
   useEffect(() => {
     if (hasMore && status !== "loading") {
-      dispatch(fetchProducts(page));
+      dispatch(fetchProducts());
     }
   }, [dispatch, page, hasMore, status]);
 
