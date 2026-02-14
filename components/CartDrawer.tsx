@@ -107,7 +107,7 @@ export default function CartDrawer() {
       {/* Optional button to open drawer */}
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-indigo-600 text-white shadow-lg flex items-center justify-center z-50 hover:bg-indigo-500 transition"
+        className="fixed bottom-75 right-6 animate-pulse w-12 h-12 rounded-full bg-indigo-600 text-white shadow-lg flex items-center justify-center z-50 hover:bg-indigo-500 transition"
       >
         🛒
       </button>

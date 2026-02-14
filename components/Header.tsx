@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useAppSelector } from "@/store/hooks";
 import { ShoppingCart, Menu, X } from "lucide-react";
 
+
 const Header = () => {
     const cartCount = useAppSelector(
         (state) => state.cart.items.reduce((sum, item) => sum + item.quantity, 0)
