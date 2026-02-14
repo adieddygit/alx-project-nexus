@@ -1,20 +1,22 @@
 import nextPWA from "@ducanh2912/next-pwa";
+import type { NextConfig } from "next";
 
-const nextConfig = {
+const withPWA = nextPWA({
+  dest: "public",
+  register: true,
+  disable: process.env.NODE_ENV === "development",
+});
+
+const nextConfig: NextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
-  experimental: {
-    turbo: true,
-  },
   images: {
-    domains: ["fakestoreapi.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "fakestoreapi.com",
+      },
+    ],
   },
 };
 
-export default nextPWA({
-  ...nextConfig,
-  dest: "public",
-  register: true,
-  // skipWaiting: true,
-  disable: process.env.NODE_ENV === "development",
-});
+export default withPWA(nextConfig);

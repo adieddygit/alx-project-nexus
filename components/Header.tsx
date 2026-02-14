@@ -71,7 +71,7 @@ const Header = () => {
 
                     {/* Mobile Cart */}
                     <Link href="/cart" className="md:hidden relative">
-                    <ShoppingCart className={`w-6 h-6 hover:text-indigo-600 ${isDark ? "text-white" : "text-gray-500"} `}/>
+                    <ShoppingCart className={`w-6 h-6 hover:text-indigo-600 mx-1 ${isDark ? "text-white" : "text-gray-500"} `}/>
                     {mounted && cartCount > 0 && (
                         <span className="absolute -top-2 -right-2 text-xs bg-red-500 text-white w-5 h-5 flex item-center justify-center rounded-full">
                             {cartCount}
