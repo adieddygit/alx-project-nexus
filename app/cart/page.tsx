@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import {
   incrementQuantity,
@@ -17,6 +18,16 @@ export default function CartPage() {
     (sum, item) => sum + item.price * item.quantity,
     0
   );
+
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null; // prevent SSR mismatch
+  }
 
   if (items.length === 0) {
     return (
