@@ -6,7 +6,4 @@ export interface Product {
     description: string;
     image: string;
     isFeatured?: boolean;
-    cart: {
-        items: []
-    }
 }

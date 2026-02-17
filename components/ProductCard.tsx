@@ -7,11 +7,11 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Product } from "@/types/product";
 
-interface Props {
+type Props = {
     product: Product;
 }
 
-const ProductCard = ({ product }:{ product: Product}) => {
+const ProductCard = ({ product }:Props) => {
 
     const dispatch = useAppDispatch();
 
@@ -24,7 +24,7 @@ const ProductCard = ({ product }:{ product: Product}) => {
             
             {/* Featured Badge */}
             {product.isFeatured && (
-                <span className="absolute top-3 left-3 z-10 bg-black text-white taxt-xs px-2 py-1 rouded-full">
+                <span className="absolute top-3 left-3 z-10 bg-black text-white taxt-xs px-2 py-1 rounded-full">
                 🔥 Featured
                 </span>
             )}
