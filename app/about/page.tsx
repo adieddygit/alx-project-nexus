@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+// import Image from "next/image";
 
 export default function AboutPage() {
     return (
@@ -26,13 +26,13 @@ export default function AboutPage() {
                     </p>
                 </div>
                 <div>
-                    <Image
-                    src="/images/"
+                    {/* <Image
+                    src="/image/"
                     alt="Our Mission"
                     width={600}
                     height={400}
                     className="rounded-xl object-cover shadow-lg"
-                    />
+                    /> */}
                 </div>
             </section>
 
