@@ -8,7 +8,7 @@ export default function AboutPage() {
             {/* Hero / Intro */}
             <section className="text-center">
                 <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                 Nexus<span className="text-indigo-500">Store</span>
+                 Ne<span className="text-5xl">╳</span>us<span className="text-indigo-600"></span><span className="text-indigo-500">Store</span>
                 </h1>
                 <p className="font-semibold text-lg md:text-xl text-indigo-300 max-w-2xl mx-auto">
                 NexusStore is a modern e-commerce PWA built for a seamless shopping experience.
@@ -41,20 +41,20 @@ export default function AboutPage() {
                 <h2 className="text-3xl font-bold text-center mb-8">Our Values</h2>
         <div className="grid md:grid-cols-3 gap-8 text-center">
           <div className="p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
-            <h3 className="text-gray-800 font-semibold text-xl mb-2">Quality</h3>
-            <p className="font-semibold text-indigo-400">
+            <h3 className="text-black font-semibold text-xl mb-2">Quality</h3>
+            <p className="text-indigo-600">
               Only the best products make it to our catalog.
             </p>
           </div>
           <div className="p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
-            <h3 className="text-gray-800 font-semibold text-xl mb-2">Innovation</h3>
-            <p className="font-semibold text-indigo-400">
+            <h3 className="text-black font-semibold text-xl mb-2">Innovation</h3>
+            <p className="text-indigo-600">
               We continuously improve our platform to enhance user experience.
             </p>
           </div>
           <div className="p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
-            <h3 className="text-gray-800 font-semibold text-xl mb-2">Trust</h3>
-            <p className="font-semibold text-indigo-400">
+            <h3 className="text-black font-semibold text-xl mb-2">Trust</h3>
+            <p className="text-indigo-600">
               Building reliable relationships with our customers is our top priority.
             </p>
             </div>
