@@ -299,23 +299,6 @@ Open a Pull Request
 
 ## 📌 Description
 
-Explain the feature or fix.
-
-## 🔍 Changes Made
-
-- Change 1
-- Change 2
-
-## 🧪 Testing
-
-How was it tested?
-
-## 📸 Screenshots (if UI change)
-
-Attach screenshots here.
-
-🎯 Portfolio Summary (For Emmanuel Adi)
-
 Ne╳usStore demonstrates:
 
 Advanced state management
