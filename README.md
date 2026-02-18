@@ -2,7 +2,6 @@
 ALX Project Nexus — Production-Ready E-commerce PWA
 
 <p align="center"> <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f172a,100:4f46e5&height=200&section=header&text=Ne╳usStore&fontSize=45&fontColor=ffffff&animation=fadeIn" /> </p> <p align="center"> <b>Scalable. Performant. Production-Focused.</b><br/> Built with Next.js, TypeScript & Redux Toolkit </p>
-🚀 Recruiter Snapshot
 
 Ne╳usStore is not just an academic project — it demonstrates:
 
