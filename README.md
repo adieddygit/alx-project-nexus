@@ -1,4 +1,4 @@
-🛒 ALX Project Nexus – E-commerce Progressive Web App
+🛒 ALX Project Nexus (Ne╳usStore) – E-commerce Progressive Web App
 📌 Project Overview
 
 ALX Project Nexus is a modern e-commerce Progressive Web Application (PWA) developed as part of the ProDev Frontend Engineering Program.
