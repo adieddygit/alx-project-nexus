@@ -9,7 +9,6 @@ import { Features } from "@/components/Features";
 import { FeaturedProducts } from "@/components/FeaturedProducts";
 import { HowItWorks } from "@/components/HowItWorks";
 import { CTA } from "@/components/CTA";
-// import ProductCard from "@/components/ProductCard";
 
 export default function HomePage() {
   const dispatch = useAppDispatch();

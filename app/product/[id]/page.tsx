@@ -57,6 +57,7 @@ export async function generateMetadata({
 }
 
 /* ---------- PAGE ---------- */
+export const dynamic = "force-dynamic";
 export default async function ProductPage({
   params,
 }: {
@@ -82,7 +83,7 @@ export default async function ProductPage({
 
       <div>
         <h1 className="text-3xl font-bold">{product.title}</h1>
-        <p className="mt-4 text-gray-600">{product.description}</p>
+        <p className="mt-4 text-gray-400">{product.description}</p>
         <p className="mt-6 text-2xl font-bold text-indigo-600">
           ${product.price}
         </p>
