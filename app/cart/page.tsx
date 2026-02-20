@@ -8,16 +8,17 @@ import {
   removeFromCart,
   clearCart,
 } from "@/store/cartSlice";
-import Link from "next/link"
+import Link from "next/link";
 
 export default function CartPage() {
   const dispatch = useAppDispatch();
   const { items } = useAppSelector((state) => state.cart);
 
-  const total = items.reduce(
+  // Added safety check for items array
+  const total = items?.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
-  );
+  ) || 0;
 
   const [mounted, setMounted] = useState(false);
 
@@ -29,7 +30,7 @@ export default function CartPage() {
     return null; // prevent SSR mismatch
   }
 
-  if (items.length === 0) {
+  if (!items || items.length === 0) {
     return (
       <section className="max-w-4xl mx-auto px-4 py-20 text-center">
         <h1 className="text-2xl font-bold">Your cart is empty 🛒</h1>
@@ -55,22 +56,25 @@ export default function CartPage() {
             <div className="flex items-center gap-3">
               <button
                 onClick={() => dispatch(decrementQuantity(item.id))}
-                className="px-3 py-1 border rounded"
+                aria-label={`Decrease quantity of ${item.title}`}
+                className="px-3 py-1 border rounded hover:bg-gray-50"
               >
                 −
               </button>
 
-              <span>{item.quantity}</span>
+              <span className="min-w-8 text-center">{item.quantity}</span>
 
               <button
                 onClick={() => dispatch(incrementQuantity(item.id))}
-                className="px-3 py-1 border rounded"
+                aria-label={`Increase quantity of ${item.title}`}
+                className="px-3 py-1 border rounded hover:bg-gray-50"
               >
                 +
               </button>
 
               <button
                 onClick={() => dispatch(removeFromCart(item.id))}
+                aria-label={`Remove ${item.title} from cart`}
                 className="ml-4 text-red-500 hover:underline"
               >
                 Remove
@@ -80,6 +84,7 @@ export default function CartPage() {
         ))}
       </div>
 
+      {/* FIXED: Proper flexbox layout - grouped total and checkout button */}
       <div className="mt-10 flex justify-between items-center">
         <button
           onClick={() => dispatch(clearCart())}
@@ -88,16 +93,18 @@ export default function CartPage() {
           Clear Cart
         </button>
 
-        <div className="text-xl font-bold">
-          Total: ${total.toFixed(2)}
+        <div className="flex items-center gap-6">
+          <div className="text-xl font-bold">
+            Total: ${total.toFixed(2)}
+          </div>
+          <Link
+            href="/checkout"
+            className="bg-indigo-600 text-white px-6 py-3 rounded-xl hover:bg-indigo-700 transition-colors"
+          >
+            Proceed to Checkout
+          </Link>
         </div>
-        <Link
-         href="/checkout"
-         className="bg-indigo-600 text-white px-6 py-3 rounded-xl"
->
-         Proceed to Checkout
-        </Link>
-         </div>
+      </div>
     </section>
   );
 }
