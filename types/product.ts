@@ -6,4 +6,8 @@ export interface Product {
     description: string;
     image: string;
     isFeatured?: boolean;
+    rating: {
+    rate: number;
+    count: number;
+  };
 }
