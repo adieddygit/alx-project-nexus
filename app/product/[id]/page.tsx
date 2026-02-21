@@ -181,7 +181,7 @@ export default async function ProductPage({
               <button className="flex-1 bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-colors">
                 Add to Cart
               </button>
-              <button className="px-6 py-3 border border-gray-300 rounded-lg font-semibold hover:bg-gray-50 transition-colors">
+              <button className="px-6 py-3 border border-gray-300 rounded-lg font-semibold hover:bg-gray-50 hover:text-black transition-colors">
                 Add to Wishlist
               </button>
             </div>
